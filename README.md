@@ -14,4 +14,20 @@ Thus the **datasplitter** was born.
 
 ## Use
 
-Iter
+*Iterable = datasplitter(input_data:Iterable, num_parts:int)* 
+
+Given that the implementation is a generator, the more common way to use it would 
+be in code like this:
+
+```python
+num_parts = 20
+my_pids = set()
+
+for part_of_input in datasplitter(input_data, num_parts):
+    pid = os.fork()
+    if not pid:
+        do_something(part_of_input)
+        os._exit()
+    else:
+        my_pids.add(pid)
+```
