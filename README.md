@@ -32,3 +32,12 @@ for part_of_input in datasplitter(input_data, num_parts):
     else:
         my_pids.add(pid)
 ```
+
+Then, you can use a wait loop to collect the results.
+
+```python
+while mypids:
+    child_pid, status, _ = os.wait3(0)
+    mypids.remove(child_pid)
+    print(f"{child_pid=} has completed with {status=}")
+```
