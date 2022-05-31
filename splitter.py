@@ -32,7 +32,7 @@ def splitter(group:Iterable, num_chunks:int) -> Iterable:
     """
     Generator to divide a collection into num_chunks pieces.
     It works with str, tuple, list, and dict, and the return
-    value is of the same type as the .
+    value is of the same type as the group argument.
 
     group      -- str, tuple, list, or dict.
     num_chunks -- how many pieces you want to have.
