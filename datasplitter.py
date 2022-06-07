@@ -68,8 +68,24 @@ if __name__ == '__main__':
     t = tuple(s)
     d = {i:c for i, c in enumerate(s)}
 
+    my_pids = set()
+
     try:
         num_parts = int(input("Number of partitions: "))
-        print("\n".join(f"{y}" for x in (s, l, t, d) for y in datasplitter(x, num_parts) ))
+        for x in (s, l, t, d):
+            for y in datasplitter(x, num_parts):
+                if (pid := os.fork()):
+                    my_pids.add(pid)
+                else:
+                    print(f"{os.getpid()=} : {y}")
+                    os._exit()
+
+        while my_pids:
+            child_pid, status, _ = os.wait3(0)
+            mypids.remove(child_pid)
+            print(f"{child_pid=} has completed with {status=}")
+        else:
+            print("All done.")
+
     except Exception as e:
         print(f"{e}")
