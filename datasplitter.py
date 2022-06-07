@@ -28,7 +28,7 @@ __status__ = 'production'
 __license__ = 'MIT'
 
 
-def splitter(group:Iterable, num_chunks:int) -> Iterable:
+def datasplitter(group:Iterable, num_chunks:int) -> Iterable:
     """
     Generator to divide a collection into num_chunks pieces.
     It works with str, tuple, list, and dict, and the return
@@ -70,6 +70,6 @@ if __name__ == '__main__':
 
     try:
         num_parts = int(input("Number of partitions: "))
-        print("\n".join(f"{y}" for x in (s, l, t, d) for y in splitter(x, num_parts) ))
+        print("\n".join(f"{y}" for x in (s, l, t, d) for y in datasplitter(x, num_parts) ))
     except Exception as e:
         print(f"{e}")

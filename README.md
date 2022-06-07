@@ -6,7 +6,6 @@ Faculty and their research students frequently cut a large data file into
 several smaller ones, and run N copies of a program on the nodes of the 
 cluster. 
 
-
 There is nothing wrong with the approach, but it does lead to a JOBID 
 for each running process, and separate tombstone (output) files that
 must be examined at the end.
@@ -40,4 +39,6 @@ while mypids:
     child_pid, status, _ = os.wait3(0)
     mypids.remove(child_pid)
     print(f"{child_pid=} has completed with {status=}")
+else:
+    print("All done")
 ```
